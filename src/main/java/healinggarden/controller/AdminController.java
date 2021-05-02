@@ -2,6 +2,7 @@ package healinggarden.controller;
 
 import healinggarden.pojo.Admin;
 import healinggarden.service.admin.AdminServiceImpl;
+import healinggarden.util.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,12 +28,15 @@ public class AdminController {
     @CrossOrigin
     @RequestMapping("/adminLogin")
     @ResponseBody
-    public String adminLogin(@RequestBody Admin admin){
+    public ResultCode adminLogin(@RequestBody Admin admin){
         System.out.println(admin);
+
         if (adminService.adminLogin(admin) != null){
-            return "true";
+            //密码正确
+            return new ResultCode(200);
         }else{
-            return "false";
+            //密码错误
+            return new ResultCode(400);
         }
     }
 }

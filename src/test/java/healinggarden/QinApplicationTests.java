@@ -19,7 +19,12 @@ class QinApplicationTests {
 
     @Test
     void contextLoads() throws SQLException {
-        userService.deleteUser(2);
+        User user = new User();
+        user.setUserName("name4");
+        user.setAddress("hz");
+        user.setPassword("123456");
+        user.setTelephone("123321");
+        userService.addUser(user);
     }
 
 }

@@ -5,10 +5,7 @@ import healinggarden.service.user.UserService;
 import healinggarden.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
@@ -47,21 +44,40 @@ public class UserController {
     }
 
     //添加用户
+    @CrossOrigin
     @RequestMapping("/addUser")
-    public int addUser(User user){
+    public int addUser(@RequestBody User user){
+        System.out.println(user.toString());
         return userService.addUser(user);
     }
 
     //获取用户列表
+    @CrossOrigin
     @RequestMapping("/userList")
+    @ResponseBody
     public List<User> getUserList() throws SQLException {
         return userService.getUserList();
     }
 
     //关键字查询
-    @RequestMapping("/admin/key")
+    @RequestMapping("/key")
     public List<User> getUserByKey(User user) throws SQLException {
         user.setUserName("%"+user.getUserName()+"%");
         return userService.getUserByKey(user);
+    }
+
+    //删除用户
+    @CrossOrigin
+    @RequestMapping("/deleteUser")
+    public int deleteUser(Integer id) {
+        return userService.deleteUser(id);
+    }
+
+    //根据id查用户
+    @CrossOrigin
+    @ResponseBody
+    @RequestMapping("/getUserById")
+    public User getUserById(int id) throws SQLException {
+        return userService.getUserById(id);
     }
 }
