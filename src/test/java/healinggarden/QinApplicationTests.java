@@ -1,7 +1,10 @@
 package healinggarden;
 
+import healinggarden.pojo.User;
+import healinggarden.service.user.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sql.DataSource;
@@ -11,12 +14,12 @@ import java.sql.SQLException;
 class QinApplicationTests {
 
     @Autowired
-    DataSource dataSource;
+    @Qualifier("userServiceImpl")
+    public UserService userService;
 
     @Test
     void contextLoads() throws SQLException {
-        System.out.println(dataSource.getClass());
-        System.out.println(dataSource.getConnection());
+        userService.deleteUser(2);
     }
 
 }

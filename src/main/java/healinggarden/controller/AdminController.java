@@ -17,6 +17,7 @@ public class AdminController {
     @Autowired
     private AdminServiceImpl adminService;
 
+    @CrossOrigin
     @RequestMapping("/adminList")
     @ResponseBody
     public List<Admin> getAdminList(){

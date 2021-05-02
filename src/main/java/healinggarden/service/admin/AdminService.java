@@ -1,6 +1,5 @@
 package healinggarden.service.admin;
 
-import healinggarden.mapper.AdminMapper;
 import healinggarden.pojo.Admin;
 import org.springframework.stereotype.Service;
 
