@@ -15,7 +15,7 @@
         select * from user
     </select>
 
-    <select id="getUserById" parameterType="int">
+    <select id="getUserById" parameterType="int" resultType="User">
         select * from user where id = #{id}
     </select>
 

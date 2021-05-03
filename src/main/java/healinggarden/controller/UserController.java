@@ -19,7 +19,6 @@ public class UserController {
     public UserService userService;
 
     //用户登入
-
     @RequestMapping("/userLogin")
     public boolean login(User user, HttpServletRequest httpServletRequest) throws SQLException {
 
@@ -79,5 +78,13 @@ public class UserController {
     @RequestMapping("/getUserById")
     public User getUserById(int id) throws SQLException {
         return userService.getUserById(id);
+    }
+
+    //修改用户信息
+    @CrossOrigin
+    @RequestMapping("/updateUser")
+    public int updateUser(@RequestBody User user) throws SQLException {
+        System.out.println(user.toString());
+        return userService.updateUser(user);
     }
 }
