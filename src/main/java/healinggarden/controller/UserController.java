@@ -43,7 +43,6 @@ public class UserController {
     }
 
     //添加用户
-    @CrossOrigin
     @RequestMapping("/addUser")
     public int addUser(@RequestBody User user){
         System.out.println(user.toString());
@@ -51,7 +50,6 @@ public class UserController {
     }
 
     //获取用户列表
-    @CrossOrigin
     @RequestMapping("/userList")
     @ResponseBody
     public List<User> getUserList() throws SQLException {
@@ -66,14 +64,12 @@ public class UserController {
     }
 
     //删除用户
-    @CrossOrigin
     @RequestMapping("/deleteUser")
     public int deleteUser(Integer id) {
         return userService.deleteUser(id);
     }
 
     //根据id查用户
-    @CrossOrigin
     @ResponseBody
     @RequestMapping("/getUserById")
     public User getUserById(int id) throws SQLException {
@@ -81,7 +77,6 @@ public class UserController {
     }
 
     //修改用户信息
-    @CrossOrigin
     @RequestMapping("/updateUser")
     public int updateUser(@RequestBody User user) throws SQLException {
         System.out.println(user.toString());

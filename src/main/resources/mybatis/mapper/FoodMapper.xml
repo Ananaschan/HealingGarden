@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="healinggarden.mapper.FoodMapper">
+    <insert id="addFood" parameterType="Food">
+        insert into food(food_name,food_type,price,description) values (#{foodName},#{foodType},#{price},#{description})
+    </insert>
+
+    <update id="deleteFood" parameterType="int">
+        delete from food where id = #{id}
+    </update>
+
+    <select id="getFoodList" resultType="Food">
+        select * from food
+    </select>
+
+    <select id="getFoodById" parameterType="int" resultType="Food">
+        select * from food where id = #{id}
+    </select>
+
+    <select id="getUserByName" parameterType="Food">
+        select * from food where food_name = #{foodName}
+    </select>
+
+    <select id="getFoodByKey" parameterType="Food" resultType="Food">
+        select * from food where userName like '%${userName}%'
+    </select>
+
+    <update id="updateFood" parameterType="Food">
+        update food set food_name = #{foodName},food_type = #{foodType},price = #{price},description = #{description} where id = #{id}
+    </update>
+</mapper>
