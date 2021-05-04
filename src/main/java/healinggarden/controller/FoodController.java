@@ -20,7 +20,9 @@ public class FoodController {
     @ResponseBody
     @RequestMapping("/foodList")
     public List<Food> getFoodList() throws SQLException{
-        return foodService.getFoodList();
+        List<Food> foodList = foodService.getFoodList();
+        System.out.println(foodList.toString());
+        return foodList;
     }
 
     @ResponseBody

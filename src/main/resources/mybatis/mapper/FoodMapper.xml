@@ -4,16 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="healinggarden.mapper.FoodMapper">
     <insert id="addFood" parameterType="Food">
-        insert into food(food_name,food_type,price,description) values (#{foodName},#{foodType},#{price},#{description})
+        insert into food(food_name,food_type,price,description) values (#{foodName},#{foodType.id},#{price},#{description})
     </insert>
 
     <update id="deleteFood" parameterType="int">
         delete from food where id = #{id}
     </update>
 
-    <select id="getFoodList" resultType="Food">
-        select * from food
+    <select id="getFoodList" resultMap="FoodMapper">
+        SELECT f.id, f.food_name,ft.id tid, ft.type_name, f.price, f.description
+        FROM food f, foodtype ft
+        WHERE f.food_type = ft.id
     </select>
+
+    <resultMap id="FoodMapper" type="Food">
+        <result property="id" column="id"/>
+        <result property="foodName" column="food_name"/>
+        <result property="price" column="price"/>
+        <result property="description" column="description"/>
+        <association property="foodType" javaType="FoodType">
+            <result property="id" column="tid"/>
+            <result property="typeName" column="type_name"/>
+        </association>
+    </resultMap>
+
 
     <select id="getFoodById" parameterType="int" resultType="Food">
         select * from food where id = #{id}
@@ -28,6 +42,6 @@
     </select>
 
     <update id="updateFood" parameterType="Food">
-        update food set food_name = #{foodName},food_type = #{foodType},price = #{price},description = #{description} where id = #{id}
+        update food set food_name = #{foodName},food_type = #{foodType.id},price = #{price},description = #{description} where id = #{id}
     </update>
 </mapper>
