@@ -42,6 +42,7 @@ public class FoodTypeController {
 
     @RequestMapping("/updateFoodType")
     public int updateFoodType(@RequestBody FoodType foodType) throws SQLException {
+        System.out.println(foodType.toString());
         return foodTypeService.updateFoodType(foodType);
     }
 }

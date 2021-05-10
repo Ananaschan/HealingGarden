@@ -29,8 +29,10 @@
     </resultMap>
 
 
-    <select id="getFoodById" parameterType="int" resultType="Food">
-        select * from food where id = #{id}
+    <select id="getFoodById" parameterType="int"  resultMap="FoodMapper">
+        SELECT f.id, f.food_name,ft.id tid, ft.type_name, f.price, f.description
+        FROM food f, foodtype ft
+        WHERE f.food_type = ft.id and f.id = #{id}
     </select>
 
     <select id="getUserByName" parameterType="Food">
