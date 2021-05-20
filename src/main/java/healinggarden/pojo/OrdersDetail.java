@@ -12,6 +12,6 @@ import org.springframework.stereotype.Component;
 public class OrdersDetail {
     private int id;
     private int foodId;
-    private int orders_id;
+    private int ordersId;
     private float count;
 }
