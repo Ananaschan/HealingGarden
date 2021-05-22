@@ -17,4 +17,5 @@ public interface UserService {
     //关键字搜索
     List<User> getUserByKey(User user) throws SQLException;
     int updateUser(User user) throws SQLException;
+    User userLogin(User user) throws SQLException;
 }

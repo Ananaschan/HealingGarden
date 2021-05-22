@@ -48,4 +48,9 @@ public class UserServiceImpl implements UserService{
     public int updateUser(User user) throws SQLException {
         return userMapper.updateUser(user);
     }
+
+    @Override
+    public User userLogin(User user) throws SQLException {
+        return userMapper.userLogin(user);
+    }
 }

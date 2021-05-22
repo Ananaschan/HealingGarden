@@ -19,15 +19,19 @@
         select * from user where id = #{id}
     </select>
 
-    <select id="getUserByName" parameterType="User">
-        select * from user where userName = #{userName}
+    <select id="getUserByName" parameterType="User" resultType="User">
+        select * from user where user_name = #{userName}
     </select>
 
     <select id="getUserByKey" parameterType="User" resultType="User">
-        select * from user where userName like '%${userName}%'
+        select * from user where user_name like '%${userName}%'
     </select>
 
     <update id="updateUser" parameterType="User">
         update user set user_name = #{userName},password = md5(#{password}),telephone = #{telephone},address = #{address} where id = #{id}
     </update>
+
+    <select id="userLogin" parameterType="User" resultType="User">
+        select * from user where user_name = #{userName} and password = md5(#{password})
+    </select>
 </mapper>

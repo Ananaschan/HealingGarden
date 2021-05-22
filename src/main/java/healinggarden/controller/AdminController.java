@@ -18,14 +18,14 @@ public class AdminController {
     @Autowired
     private AdminServiceImpl adminService;
 
-    @CrossOrigin
+
     @RequestMapping("/adminList")
     @ResponseBody
     public List<Admin> getAdminList(){
         return adminService.getAdminList();
     }
 
-    @CrossOrigin
+
     @RequestMapping("/adminLogin")
     @ResponseBody
     public ResultCode adminLogin(@RequestBody Admin admin){

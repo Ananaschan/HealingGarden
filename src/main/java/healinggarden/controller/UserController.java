@@ -3,6 +3,7 @@ package healinggarden.controller;
 import healinggarden.pojo.User;
 import healinggarden.service.user.UserService;
 import healinggarden.util.Constants;
+import healinggarden.util.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -20,19 +21,14 @@ public class UserController {
 
     //用户登入
     @RequestMapping("/userLogin")
-    public boolean login(User user, HttpServletRequest httpServletRequest) throws SQLException {
-
-        User user1 = userService.getUserByName(user);
-        boolean flag = false;
-        if (user1.getUserName().equals(user.getUserName())&&user1.getPassword().equals(user.getPassword())){
-            flag = true;
+    public ResultCode login(@RequestBody User user) throws SQLException {
+        System.out.println("传入的数据"+user.toString());
+        if (userService.userLogin(user) != null){
+            System.out.println("success login!");
+            return new ResultCode(200);
         }
-
-        //向session中添加用户信息
-        if (flag){
-            httpServletRequest.getSession().setAttribute(Constants.USER_SESSION,user1);
-        }
-        return flag;
+        System.out.println("error login!");
+        return new ResultCode(400);
     }
 
     //用户注销
@@ -44,7 +40,12 @@ public class UserController {
 
     //添加用户
     @RequestMapping("/addUser")
-    public int addUser(@RequestBody User user){
+    public int addUser(@RequestBody User user) throws SQLException {
+
+        if (userService.getUserByName(user) != null){
+            return 0;
+        }
+
         System.out.println(user.toString());
         return userService.addUser(user);
     }

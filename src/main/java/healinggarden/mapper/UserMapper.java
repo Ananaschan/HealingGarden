@@ -43,4 +43,5 @@ public interface UserMapper {
      **/
     int updateUser(User user) throws SQLException;
 
+    User userLogin(User user) throws SQLException;
 }

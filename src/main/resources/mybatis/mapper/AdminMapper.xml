@@ -9,5 +9,5 @@
 
 <select id="adminLogin" resultType="Admin">
         select * from admin where user_name = #{userName} and password = #{password}
-    </select>
+</select>
 </mapper>
